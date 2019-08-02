@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,18 +30,19 @@ public class TwoFactorServiceController {
 //		return new ResponseEntity<>(HttpStatus.OK);
 //	}
 	
-	@RequestMapping(value="/users/{userid}/mobilenumbers/{mobilenumber}/2fa", method=RequestMethod.PUT) 
-	public ResponseEntity<Object> send2faCodeinSMS(@PathVariable("userid") String id, @PathVariable("mobilenumber") String mobile) {
+	@RequestMapping("/")
+	
+	public ResponseEntity<Object> send2faCodeinSMS(@RequestBody user phone) {
 		String twoFaCode = String.valueOf(new Random().nextInt(9999) + 1000);
-		smsService.send2FaCode(mobile, twoFaCode);
-		daoService.update2FAProperties(id, twoFaCode);
+		smsService.send2FaCode(phone.getToauthphone(), twoFaCode);
+		daoService.update2FAProperties(phone.getUsername(), twoFaCode);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
+	//@PathVariable("userid") String id, @PathVariable("2facode") String code
+	@RequestMapping("/2fa") 
+	public ResponseEntity<Object> verify(@RequestBody verify phone) {
 	
-	@RequestMapping(value="/users/{userid}/codes/{2facode}", method=RequestMethod.PUT) 
-	public ResponseEntity<Object> verify(@PathVariable("userid") String id, @PathVariable("2facode") String code) {
-	
-		boolean isValid = daoService.checkCode(id, code);
+		boolean isValid = daoService.checkCode(phone.getUsername(), phone.getCode());
 		
 		if(isValid)
 			return new ResponseEntity<>(HttpStatus.OK);
