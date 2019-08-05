@@ -1,9 +1,8 @@
-package OnBoardApp.Blog.controller;
+package OnBoardApp.BlogandFaqOnBoardApp.controller;
 
 
-import OnBoardApp.Blog.model.user;
-import OnBoardApp.Blog.repository.userRepository;
-import org.apache.catalina.User;
+import OnBoardApp.BlogandFaqOnBoardApp.model.userblog;
+import OnBoardApp.BlogandFaqOnBoardApp.repository.userRepositoryblog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,38 +10,38 @@ import java.util.List;
 @CrossOrigin
 @RestController
 @RequestMapping("/blog")
-public class userController {
+public class userControllerblog {
 
     @Autowired
-    userRepository repository;
+    userRepositoryblog repository;
 
     @PostMapping("/save")
-    public user save(@RequestBody user User){
+    public userblog save(@RequestBody userblog User){
 
         repository.save(User);
         return (User);
     }
-   @PutMapping("/update/{id}")
-    public user update(@PathVariable Long id ,@RequestBody user User){
+    @PutMapping("/update/{id}")
+    public userblog update(@PathVariable Long id , @RequestBody userblog User){
 
 
-        user userDetails=repository.findById(id).get();
+        userblog userDetails=repository.findById(id).get();
         userDetails.setTitle(User.getTitle());
         userDetails.setSubject(User.getSubject());
         userDetails.setContent(User.getContent());
         userDetails.setUrl(User.getUrl());
-        user update=repository.save(userDetails);
+        userblog update=repository.save(userDetails);
         return update;
 
 
     }
     @GetMapping("/display")
-    public List<user> getAllBlog()  {
-        return (List<user>) repository.findAll();
+    public List<userblog> getAllBlog()  {
+        return (List<userblog>) repository.findAll();
 
     }
     @GetMapping("/display/{id}")
-    public user blogById(@PathVariable Long id) {
+    public userblog blogById(@PathVariable Long id) {
         return repository.findById(id).get();
 
     }
