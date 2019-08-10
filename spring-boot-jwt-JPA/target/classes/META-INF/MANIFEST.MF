@@ -1,4 +1,9 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
+Build-Jdk-Spec: 11
+Implementation-Title: spring-boot-jwt-tr
+Implementation-Version: 0.0.1-SNAPSHOT
+=======
 Built-By: nineleaps
 Build-Jdk: 11.0.3
 Implementation-Title: spring-boot-jwt
@@ -6,5 +11,6 @@ Implementation-Version: 0.0.1-SNAPSHOT
 Implementation-Vendor-Id: com.javainuse
 Implementation-URL: https://projects.spring.io/spring-boot/#/spring-boot
  -starter-parent/spring-boot-jwt
+>>>>>>> 4e0dd176dad142470418a74c5aab2404ec9b9154
 Created-By: Maven Integration for Eclipse
 
