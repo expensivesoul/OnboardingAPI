@@ -32,17 +32,17 @@ public class TwoFactorServiceController {
 	
 	@RequestMapping("/")
 	
-	public ResponseEntity<Object> send2faCodeinSMS(@RequestBody user phone) {
-		String twoFaCode = String.valueOf(new Random().nextInt(9999) + 1000);
-		smsService.send2FaCode(phone.getToauthphone(), twoFaCode);
-		daoService.update2FAProperties(phone.getUsername(), twoFaCode);
+	public ResponseEntity<Object> send2faCodeinSMS(@RequestBody user phone1) {
+		String twoFaCode = String.valueOf(new Random().nextInt(9000) + 1000);
+		smsService.send2FaCode(phone1.getPhone(), twoFaCode);
+		daoService.update2FAProperties(phone1.getPhone(), twoFaCode);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	//@PathVariable("userid") String id, @PathVariable("2facode") String code
 	@RequestMapping("/2fa") 
 	public ResponseEntity<Object> verify(@RequestBody verify phone) {
 	
-		boolean isValid = daoService.checkCode(phone.getUsername(), phone.getCode());
+		boolean isValid = daoService.checkCode(phone.getPhone(), phone.getCode());
 		
 		if(isValid)
 			return new ResponseEntity<>(HttpStatus.OK);

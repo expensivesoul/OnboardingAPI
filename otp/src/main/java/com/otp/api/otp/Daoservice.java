@@ -13,7 +13,7 @@ public class Daoservice {
 	JdbcTemplate jdbcTemplate;
 	
 	public void update2FAProperties(String username, String twofacode) {
-		jdbcTemplate.update("update user set fa_code=?, fa_expire_time=? where firstname=?", new Object[] {
+		jdbcTemplate.update("update user set fa_code=?, fa_expire_time=? where phone=?", new Object[] {
 				twofacode, (System.currentTimeMillis()/1000)+120 , username
 		});
 	}
@@ -21,7 +21,7 @@ public class Daoservice {
 
 
 	public boolean checkCode(String name, String code) {
-		return jdbcTemplate.queryForObject("select count(*) from user where fa_code=? and firstname=?"
+		return jdbcTemplate.queryForObject("select count(*) from user where fa_code=? and phone=?"
 				+ " and fa_expire_time >=?", new Object[] {code, name, 
 						System.currentTimeMillis()/1000}, Integer.class) >0; 
 	}

@@ -5,19 +5,21 @@ package com.otp.api.otp;
 
 	@Entity
 	public class verify {
-		private String username;
+		private String phone;
 		private String code;
-		public String getUsername() {
-			return username;
-		}
-		public void setUsername(String username) {
-			this.username = username;
-		}
+		
 		public String getCode() {
 			return code;
 		}
 		public void setCode(String code) {
 			this.code = code;
+		}
+		
+		public void setPhone(String phone) {
+			this.phone = phone;
+		}
+		public String getPhone() {
+			return phone;
 		}
 
 }

@@ -4,25 +4,17 @@ import javax.persistence.Entity;
 
 @Entity
 public class user {
-	private String username;
-	private String toauthphone;
+	private String phone;
 
 	
-
-	public String getToauthphone() {
-		return toauthphone;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
-	public void setToauthphone(String toauthphone) {
-		this.toauthphone = toauthphone;
+	public String getPhone() {
+		return phone;
 	}
+	
 
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
 
 }
