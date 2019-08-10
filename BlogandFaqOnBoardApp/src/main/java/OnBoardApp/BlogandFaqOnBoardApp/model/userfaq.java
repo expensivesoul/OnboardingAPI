@@ -4,6 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="FAQ")
+//@NamedQuery()
 public class userfaq {
 
     @Id
@@ -16,6 +17,7 @@ public class userfaq {
     private String category;
     @Column(name="Answer")
     private String answer;
+
 
     public userfaq(){}
     public long getId() {

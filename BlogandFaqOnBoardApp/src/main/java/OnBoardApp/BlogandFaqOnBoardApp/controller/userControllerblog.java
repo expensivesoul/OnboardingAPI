@@ -18,8 +18,9 @@ public class userControllerblog {
     @PostMapping("/save")
     public userblog save(@RequestBody userblog User){
 
-        repository.save(User);
-        return (User);
+        return repository.save(User);
+        //return ( bean. User);
+        //return "Saved";
     }
     @PutMapping("/update/{id}")
     public userblog update(@PathVariable Long id , @RequestBody userblog User){
