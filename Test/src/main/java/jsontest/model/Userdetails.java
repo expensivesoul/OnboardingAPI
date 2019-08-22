@@ -8,6 +8,5 @@ public interface Userdetails {
     String getEmail();
     String getDesignation();
     String getPlace();
-    String getchecklist_name();
 
 }

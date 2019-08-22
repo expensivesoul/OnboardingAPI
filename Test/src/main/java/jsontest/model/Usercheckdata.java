@@ -13,6 +13,7 @@ public class Usercheckdata {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
     private String phone;
     private String checklist_name;
     @Type(type="json")

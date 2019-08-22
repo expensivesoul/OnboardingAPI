@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 @CrossOrigin
 @RestController
@@ -19,15 +20,17 @@ public class Usercontroller {
     Userservice service;
 
     @PostMapping("/save")
-    public User usersave(@RequestBody User User){
+    public User usersave(@RequestBody User User){ 
 
         return service.usersave(User);
     }
     @PostMapping("/assign")
-    public int insertQuery(@RequestBody Map<String,String> checkdata) {
-
-        return  service.updatecheck(checkdata.get("phone"),checkdata.get("checklist_name"));
-
+    public void insertQuery(@RequestBody Map<String,String> checkdata) {
+            System.out.println(checkdata);
+            String[] value=checkdata.get("selections").split(",");
+            for (int i=0;i<value.length;i++) {
+                service.updatecheck(checkdata.get("phone"), value[i]);
+            }
     }
 
 
@@ -41,6 +44,17 @@ public class Usercontroller {
     public List<Dto> data(@RequestBody User phone){
         return service.data(phone.getPhone());
 
+    }
+    @PostMapping("/usercheck")
+    public List<Usercheckdata> usercheck(@RequestBody User phone){
+
+        return service.usercheck(phone);
+    }
+
+    @PostMapping("/updatecheck")
+    public Usercheckdata userchecksave(@RequestBody Usercheckdata User){
+
+        return service.userchecksave(User);
     }
 
 

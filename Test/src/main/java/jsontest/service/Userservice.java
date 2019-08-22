@@ -55,4 +55,13 @@ public class Userservice {
     }
 
 
+    public List<Usercheckdata> usercheck(User phone) {
+
+        return repo.usercheck(phone.getPhone());
+    }
+
+    public Usercheckdata userchecksave(Usercheckdata user) {
+
+        return repo.save(user);
+    }
 }
