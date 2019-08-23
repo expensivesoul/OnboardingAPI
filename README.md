@@ -23,4 +23,7 @@ authentication type: User credentials+JWT token
 Database:MySQl
 FLow:
 1.just open the program in any IDE and run application.java
+<<<<<<< HEAD
 
+=======
+>>>>>>> 92ce4a7d5142927978e6dcb3ebd44c756dd06c1f
