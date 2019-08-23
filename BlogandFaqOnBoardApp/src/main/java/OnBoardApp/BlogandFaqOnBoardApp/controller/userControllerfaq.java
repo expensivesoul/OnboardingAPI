@@ -39,11 +39,11 @@ public class userControllerfaq {
         return repository.findByCategory(category.getCategory());
 
     }
-    /*@GetMapping("/distinct")
+    @GetMapping("/distinct")
     public List<userfaq> distinct(){
 
         return repository.distinctCategory();
-    }*/
+    }
 
 
     @GetMapping("/display/{id}")

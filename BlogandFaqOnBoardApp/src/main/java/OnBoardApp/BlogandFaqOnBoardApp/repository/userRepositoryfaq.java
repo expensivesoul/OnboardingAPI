@@ -13,10 +13,10 @@ import java.util.List;
 public interface userRepositoryfaq extends CrudRepository<userfaq,Long> {
 
 
-    //public user findByCategory(String category);
-       // @Query(value = "Select * from faq where category = ?1",nativeQuery = true)
+    public user findByCategory(String category);
+        @Query(value = "Select * from faq where category = ?1",nativeQuery = true)
     List<userfaq> findByCategory( String category );
 
-    //@Query(value = "select distinct category from faq",nativeQuery = true)
-     //List<userfaq> distinctCategory();
+    @Query(value = "select distinct category from faq",nativeQuery = true)
+     List<userfaq> distinctCategory();
 }
