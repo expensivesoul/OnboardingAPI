@@ -3,9 +3,12 @@ package jsontest.service;
 
 import jsontest.model.*;
 import jsontest.repository.Dtorepository;
+import jsontest.repository.UserDtoRepo;
 import jsontest.repository.Userrepository;
 import jsontest.repository.Usercheckdatarepo;
 import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.security.crypto.password.PasswordEncoder;
+//import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,6 +25,10 @@ public class Userservice {
     Usercheckdatarepo repo;
     @Autowired
     Dtorepository userrepo;
+    @Autowired
+    UserDtoRepo userDtoRepo;
+
+
 
     EntityManager entityManager;
 
@@ -39,8 +46,8 @@ public class Userservice {
 
 
 
-    public List<Dto> data(String phone) {
-        return (List<Dto>) userrepo.data(phone);
+    public List<Usercheckdata> data(String phone) {
+        return (List<Usercheckdata>) repo.data(phone);
 
     }
 
@@ -64,4 +71,33 @@ public class Userservice {
 
         return repo.save(user);
     }
+
+    public int usercheckcount(String phone) {
+        System.out.println("service wala phone"+phone);
+        return repo.countint(phone);
+    }
+
+
+    public List<NameAndPhone> nameandphone() {
+
+        return repository.nameandphone();
+    }
+    public void deletecheck(String checkname) {
+        userrepo.deleteByChecklist_name(checkname);
+
+    }
+
+    public void userRegister(UserDto user) {
+        userDtoRepo.save(user);
+
+    }
+    public int countuser(UserDto user){
+
+        return userDtoRepo.countuser(user.getUsername(),user.getPassword());
+    }
+    public int countusername(String user){
+
+        return userDtoRepo.countusername(user);
+    }
+
 }

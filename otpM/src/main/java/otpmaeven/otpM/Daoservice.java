@@ -15,9 +15,25 @@ import org.springframework.transaction.annotation.Transactional;
 public class Daoservice {
 	
 	@Autowired
-	
+
 	JdbcTemplate jdbcTemplate;
-	
+
+
+	public  boolean adminverify(String subject) {
+		System.out.println(subject+"Admin verify pe Gaya");
+		if(jdbcTemplate.queryForObject("select count(*) from user where email=?", new Object[] {subject}, Integer.class) >0){
+
+			System.out.println("chwcking");return true;
+		}
+		return true;
+	}
+	public  boolean userverify(String subject) {
+		System.out.println("subject aya kya??"+subject);
+		System.out.println("User verify pe Gaya");
+		return jdbcTemplate.queryForObject("select count(*) from user where phone=?", new Object[] {subject}, Integer.class) >0;
+	}
+
+
 	public void update2FAProperties(String username, String twofacode) {
 		System.out.print(username+"checking value "+twofacode); 
 		jdbcTemplate.update("update user set fa_code=?, fa_expire_time=? where phone=?", new Object[] {

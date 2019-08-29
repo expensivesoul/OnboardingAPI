@@ -14,7 +14,8 @@ public interface Userrepository extends CrudRepository<User,String> {
 
 
 
-
+    @Query(value = "select name,phone from user ",nativeQuery = true)
+    public List<NameAndPhone> nameandphone();
 
 
 

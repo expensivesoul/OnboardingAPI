@@ -2,21 +2,26 @@ package jsontest.controller;
 
 
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import jsontest.model.Userblog;
 import jsontest.repository.UserRepositoryblog;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @CrossOrigin
 @RestController
 @RequestMapping("/blog")
+@Api(value="test")
 public class UserControllerblog {
 
     @Autowired
     UserRepositoryblog repository;
-
+    @ApiOperation(value = "Save new Blog ")
     @PostMapping("/save")
     public Userblog save(@RequestBody Userblog User){
 
@@ -24,6 +29,7 @@ public class UserControllerblog {
         //return ( bean. User);
         //return "Saved";
     }
+    @ApiOperation(value = "Update Blog", response = ResponseEntity.class)
     @PutMapping("/update/{id}")
     public Userblog update(@PathVariable Long id , @RequestBody Userblog User){
 
@@ -38,24 +44,30 @@ public class UserControllerblog {
 
 
     }
+    @ApiOperation(value = "Display all blogs")
     @GetMapping("/display")
     public List<Userblog> getAllBlog()  {
         return (List<Userblog>) repository.findAll();
 
     }
+    @ApiOperation(value = "Display all parricular blogs by ID")
     @GetMapping("/display/{id}")
     public Userblog blogById(@PathVariable Long id) {
         return repository.findById(id).get();
 
     }
+    @ApiOperation(value = "Delete particular blog by ID")
     @DeleteMapping("/delete/{id}")
     public String deleteById(@PathVariable Long id){
         repository.deleteById(id);
         return "Deleted Blog With Id="+id;
     }
+    @ApiOperation(value = "Delete all blogs")
     @DeleteMapping("/deleteAll")
     public String deleteAll(){
         repository.deleteAll();
         return"Deleted All Blogs";
     }
+
+
 }

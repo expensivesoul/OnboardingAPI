@@ -20,6 +20,11 @@ public interface Usercheckdatarepo extends JpaRepository<Usercheckdata,Long> {
     @Query(value="select * from usercheckdata where phone=?1",nativeQuery = true)
     List<Usercheckdata> usercheck(String phone);
 
+    @Query(value = "select * from usercheckdata  where phone= ?1",nativeQuery = true)
+    public List<Usercheckdata> data(String phone);
+
+    @Query(value = "select count(*) from usercheckdata  where phone= ?1",nativeQuery = true)
+    public int countint(String phone);
 
 
 }
