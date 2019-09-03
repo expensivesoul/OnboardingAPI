@@ -2,10 +2,10 @@ package jsontest.service;
 
 
 import jsontest.model.*;
-import jsontest.repository.Dtorepository;
+import jsontest.repository.DtoRepository;
 import jsontest.repository.UserDtoRepo;
-import jsontest.repository.Userrepository;
-import jsontest.repository.Usercheckdatarepo;
+import jsontest.repository.UserRepository;
+import jsontest.repository.UserCheckdataRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.security.crypto.password.PasswordEncoder;
 //import org.springframework.security.crypto.password.PasswordEncoder;
@@ -17,14 +17,14 @@ import java.util.List;
 
 @Service
 @Transactional
-public class Userservice {
+public class UserService {
 
     @Autowired
-    Userrepository repository;
+    UserRepository repository;
     @Autowired
-    Usercheckdatarepo repo;
+    UserCheckdataRepo repo;
     @Autowired
-    Dtorepository userrepo;
+    DtoRepository userrepo;
     @Autowired
     UserDtoRepo userDtoRepo;
 
@@ -39,15 +39,15 @@ public class Userservice {
     }
 
 
-    public List<Userdetails> userlist() {
+    public List<UserDetails> userlist() {
 
-        return (List<Userdetails>) repository.testuserlist();
+        return (List<UserDetails>) repository.testuserlist();
     }
 
 
 
-    public List<Usercheckdata> data(String phone) {
-        return (List<Usercheckdata>) repo.data(phone);
+    public List<UserCheckdata> data(String phone) {
+        return (List<UserCheckdata>) repo.data(phone);
 
     }
 
@@ -62,12 +62,12 @@ public class Userservice {
     }
 
 
-    public List<Usercheckdata> usercheck(User phone) {
+    public List<UserCheckdata> usercheck(User phone) {
 
         return repo.usercheck(phone.getPhone());
     }
 
-    public Usercheckdata userchecksave(Usercheckdata user) {
+    public UserCheckdata userchecksave(UserCheckdata user) {
 
         return repo.save(user);
     }

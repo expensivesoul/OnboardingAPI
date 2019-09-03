@@ -1,0 +1,28 @@
+package jsontest.repository;
+
+
+import jsontest.model.*;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
+
+import java.util.List;
+
+public interface Userrepository extends CrudRepository<User,String> {
+
+
+
+    @Query(value = "select id,name,phone,email,place,designation from user order by id desc",nativeQuery = true)
+    public List<Userdetails> testuserlist();
+
+    @Query(value = "select name from user where phone=?1",nativeQuery = true)
+    public String getName(String phone);
+
+
+    @Query(value = "select name,phone from user ",nativeQuery = true)
+    public List<NameAndPhone> nameandphone();
+
+    @Query(value = "select count(*) from user where phone=?1 ",nativeQuery = true)
+    int getPhone(String phone);
+
+
+}
